@@ -16,6 +16,9 @@ function sunset_add_admin_page(){
 	//Generate sunset Admin SUB pages
 add_submenu_page('ankit_sunsettheme','Sunset Theme Options','Settings','manage_options','ankit_sunsettheme','sunset_theme_create_page');
 add_submenu_page('ankit_sunsettheme','Sunset CSS Options','Custom CSS','manage_options','ankit_sunset_css','sunset_theme_settings_page');
+
+//Activate custom settings
+add_action('admin_init','sunset_custom_settings');
 }
 
 add_action('admin_menu','sunset_add_admin_page');
@@ -28,4 +31,19 @@ function sunset_theme_create_page(){
 function sunset_theme_settings_page(){
 
 }
+
+function sunset_custom_settings(){
+	register_setting('sunset-settings-group','first_name');
+	add_settings_section( 'sunset-aidebar-options','Sidebar-options','sunset_sidebar_options','ankit_sunset');
+	add_settings_field( 'sidebar-name', 'First Name', 'sunset_sidebar_name', 'ankit_sunsettheme', 'sunset-sidebar-options' );
+}
+
+function sunset_sidebar_options(){
+	echo 'Customized your sidebar Information';
+}
+function sunset_sidebar_name(){
+	$firstName=esc_att(get_option('first_name'));
+	echo '<input type="text" name="first_name" value="$firstName" placeholder="First Name"/>';
+}
+
  ?>
