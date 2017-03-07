@@ -12,7 +12,6 @@
 	<div class="sunset-sidebar">
 		<div class="image-container">
 			<div id="dp_profile" class="profile-picture" style="background-image: url(<?php print $profile_pic; ?>); ">
-				<!-- <img src="<?php print $profile_pic; ?>"/> -->
 			</div>
 		</div>
 		<h1 class="sunset-username"> <?php echo $fullName; ?></h1>
