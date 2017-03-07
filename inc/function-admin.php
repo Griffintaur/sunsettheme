@@ -39,16 +39,26 @@ function sunset_custom_settings(){
 	register_setting( 'sunset-settings-group','facebook_handler');
 	register_setting( 'sunset-settings-group','snapchat_handler');
 	register_setting( 'sunset-settings-group','instagram_handler');
-	register_setting( 'sunset-settings-group','user-description');
+	register_setting( 'sunset-settings-group','user_description');
+register_setting( 'sunset-settings-group','profile_pic' );
+
 	add_settings_section( 'sunset-sidebar-options','Sidebar options','sunset_sidebar_options','ankit_sunset');
+
+
+	add_settings_field( 'sidebar-profile-pic','Profile Picture', 'sidebar_profile_pic','ankit_sunset', 'sunset-sidebar-options');
 	add_settings_field( 'sidebar-name', 'Full Name', 'sunset_sidebar_name', 'ankit_sunset', 'sunset-sidebar-options' );
 	add_settings_field( 'sidebar-twitter','Twitter Handler','sunset_sidebar_twitter','ankit_sunset','sunset-sidebar-options' );
 	add_settings_field( 'sidebar-facebook','Facebook Handler','sunset_sidebar_facebook','ankit_sunset','sunset-sidebar-options' );
 	add_settings_field( 'sidebar-snapchat','Snapchat Handler','sunset_sidebar_snapchat','ankit_sunset','sunset-sidebar-options' );
 	add_settings_field( 'sidebar-instagram','Instagram Handler','sunset_sidebar_instagram','ankit_sunset','sunset-sidebar-options' );
 	add_settings_field( 'sidebar-description', 'User Description', 'sunset_sidebar_user_description', 'ankit_sunset', 'sunset-sidebar-options');
+
 	//remeber here ankit_sunset is not binded to the name of the page but actually the group name which can be anything that is rendered using do settingin sunset-admin.php under the group name while the last input in the add_settings_filed bind it to the group
 
+}
+function sidebar_profile_pic(){
+	$Picture=esc_attr( get_option( 'profile_pic' ) );
+	echo '<input type="button" class="button button-secondary" value="Upload Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_pic" value="'.$Picture.'"/>';
 }
 
 function sunset_sidebar_options(){
@@ -62,23 +72,23 @@ function sunset_sidebar_name(){
 }
 function sunset_sidebar_user_description(){
 	$description= esc_attr( get_option('user_description' ));
-	echo'<input type="text" name="user_description_value" value="'.$description.'" placeholder="please write description about yourself"/><p> please enter the description</p>';
+	echo'<input type="text" name="user_description" value="'.$description.'" placeholder="please write description about yourself"/><p> please enter the description</p>';
 }
 function sunset_sidebar_twitter(){
 	$twitter=esc_attr( get_option( 'twitter_handler'));
-	echo '<input type="text" name="twitter_handler_value" value="'.$twitter.'" placeholder="Twitter handler"/><p class="description"> please eter the user name without the @ character</p>';
+	echo '<input type="text" name="twitter_handler" value="'.$twitter.'" placeholder="Twitter handler"/><p class="description"> please eter the user name without the @ character</p>';
 }
 function sunset_sidebar_facebook(){
 	$facebook=esc_attr( get_option( 'facebook_handler'));
-	echo '<input type="text" name="facebook_handler_value" value="'.$facebook.'" placeholder="facebook handler"/>';
+	echo '<input type="text" name="facebook_handler" value="'.$facebook.'" placeholder="facebook handler"/>';
 }
 function sunset_sidebar_instagram(){
 	$instagram=esc_attr( get_option( 'instagram_handler'));
-	echo '<input type="text" name="instagram_handler_value" value="'.$instagram.'" placeholder="instagram handler"/>';
+	echo '<input type="text" name="instagram_handler" value="'.$instagram.'" placeholder="instagram handler"/>';
 }
 function sunset_sidebar_snapchat(){
 	$snapchat=esc_attr( get_option( 'snapchat_handler'));
-	echo '<input type="text" name="snapchat_handler_value" value="'.$snapchat.'" placeholder="snapchat handler"/>';
+	echo '<input type="text" name="snapchat_handler" value="'.$snapchat.'" placeholder="snapchat handler"/>';
 }
 
 //Sanitization Settings

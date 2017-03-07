@@ -3,14 +3,20 @@
 <?php 
 	$firstName=esc_attr(get_option('first_name'));
 	$lastName=esc_attr(get_option('last_name'));
-	$fullName= $first_name.''.$last_name;
-	$user_description=esc_attr( 'user_description' );
+	$fullName= $firstName.''.$lastName;
+	$description= esc_attr( get_option('user_description' ));
+	$profile_pic=esc_attr(get_option('profile_pic'));
 
  ?>
 <div class="sunset-sidebar-preview">
 	<div class="sunset-sidebar">
-		<h1 class="sunset-username"> <?php $fullName ?></h1>
-		<h1 class="susnet-description"> <?php $user_description ?></h1>
+		<div class="image-container">
+			<div id="dp_profile" class="profile-picture" style="background-image: url(<?php print $profile_pic; ?>); ">
+				<!-- <img src="<?php print $profile_pic; ?>"/> -->
+			</div>
+		</div>
+		<h1 class="sunset-username"> <?php echo $fullName; ?></h1>
+		<h1 class="sunset-description"> <?php echo $description; ?></h1>
 		<div class="icon-wrapper"></div>
 	</div>
 </div>
