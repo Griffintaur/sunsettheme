@@ -1,4 +1,4 @@
-<h1> sunset theme </h1>
+<h1> Sunset Sidebar Options </h1>
 <?php settings_errors(); ?>
 <?php 
 	$firstName=esc_attr(get_option('first_name'));

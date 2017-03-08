@@ -14,8 +14,9 @@ function sunset_add_admin_page(){
 //use _ to connect two different word as one and to be considered as different words use -(dash)
 //slug must be a single word.
 	//Generate sunset Admin SUB pages
-add_submenu_page('ankit_sunsettheme','Sunset Theme Options','Settings','manage_options','ankit_sunsettheme','sunset_theme_create_page');
+add_submenu_page('ankit_sunsettheme','Sunset Theme Options','Sidebar','manage_options','ankit_sunsettheme','sunset_theme_create_page');
 add_submenu_page('ankit_sunsettheme','Sunset CSS Options','Custom CSS','manage_options','ankit_sunset_css','sunset_theme_settings_page');
+add_submenu_page( 'ankit_sunsettheme','Sunset Theme Options', 'Theme Options','manage_options' , 'ankit_sunset_theme', 'sunset_theme_support_page' );
 
 //Activate custom settings
 add_action('admin_init','sunset_custom_settings');
@@ -33,6 +34,7 @@ function sunset_theme_settings_page(){
 }
 
 function sunset_custom_settings(){
+	//sidebar Options
 	register_setting('sunset-settings-group','first_name');
 	register_setting( 'sunset-settings-group','last_name');
 	register_setting( 'sunset-settings-group','twitter_handler','sunset_sanitize_twitter_handler');
@@ -54,6 +56,11 @@ register_setting( 'sunset-settings-group','profile_pic' );
 	add_settings_field( 'sidebar-description', 'User Description', 'sunset_sidebar_user_description', 'ankit_sunset', 'sunset-sidebar-options');
 
 	//remeber here ankit_sunset is not binded to the name of the page but actually the group name which can be anything that is rendered using do settingin sunset-admin.php under the group name while the last input in the add_settings_filed bind it to the group
+
+	//Theme Support Options
+	register_setting( 'sunset-theme-support','post_formats', 'sunset_post_format_callback' );
+	add_settings_section( 'sunset-theme-options','Theme Options','sunset_theme_options','ankit_sunset_theme');
+	add_settings_field( 'post-formats','Post Formats' , 'sunset_post_formats_callback','ankit_sunset_theme', 'sunset_theme_options');
 
 }
 function sidebar_profile_pic(){
@@ -98,4 +105,28 @@ function sunset_sanitize_twitter_handler($input){
 	return $output;
 }
 
+
+function sunset_theme_support_page(){
+	require_once(get_template_directory().'/inc/Templates/sunset-theme-support.php');
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+function sunset_post_format_callback($input){
+	return $input;
+
+}
+
+function sunset_theme_options(){
+echo 'Activate and deactivate specific theme Support Options';
+}
+function sunset_post_formats_callback(){
+	$formats = array('aside','gallery','image','status','quote','video','chat','audio' );
+	$output ='';
+	foreach ($formats as $post_format) {
+		$output.='<input type="checkbox" id="'.$format.'" name="'.$format.'" value="1">'.$format.'</label><br>';
+	}
+	echo $output;
+}
+
  ?>
+
+
