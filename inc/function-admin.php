@@ -60,7 +60,7 @@ register_setting( 'sunset-settings-group','profile_pic' );
 	//Theme Support Options
 	register_setting( 'sunset-theme-support','post_formats', 'sunset_post_format_callback' );
 	add_settings_section( 'sunset-theme-options','Theme Options','sunset_theme_options','ankit_sunset_theme');
-	add_settings_field( 'post-formats','Post Formats' , 'sunset_post_formats_callback','ankit_sunset_theme', 'sunset_theme_options');
+	add_settings_field( 'post-formats','Post Formats' , 'sunset_post_formats_callback','ankit_sunset_theme', 'sunset-theme-options');
 
 }
 function sidebar_profile_pic(){
@@ -111,18 +111,20 @@ function sunset_theme_support_page(){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 function sunset_post_format_callback($input){
-	return $input;
+	 return $input;
 
 }
 
 function sunset_theme_options(){
-echo 'Activate and deactivate specific theme Support Options';
+echo 'Activate and deactivate specific theme Support Options hello';
 }
 function sunset_post_formats_callback(){
+	$options=get_option( 'post_formats');
 	$formats = array('aside','gallery','image','status','quote','video','chat','audio' );
 	$output ='';
 	foreach ($formats as $post_format) {
-		$output.='<input type="checkbox" id="'.$format.'" name="'.$format.'" value="1">'.$format.'</label><br>';
+		$checked= @$options[$post_format]==1?'checked':'';
+		$output.='<label><input type="checkbox" id="'.$post_format.'" name="post_formats['.$post_format.']" value="1" '.$checked.'/>'.$post_format.' </label><br>';
 	}
 	echo $output;
 }

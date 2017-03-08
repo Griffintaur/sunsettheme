@@ -3,11 +3,11 @@
 		//$picture=esc_attr(get_option());
 ?>
 
-<form method="psot" action="options.php" class="sunset-general-form">
+<form method="post" action="options.php" class="sunset-general-form">
 <?php 
 
-	do_settings_sections( 'ankit_sunset_theme');
 	settings_fields( 'sunset-theme-support' );
+	do_settings_sections( 'ankit_sunset_theme');
 	submit_button();
  ?>
  </form>
