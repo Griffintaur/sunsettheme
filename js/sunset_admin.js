@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
 	var mediaUpLoader;
-	$('#dp_profile').toggle($("#profile-picture").val());
+	// $('#dp_profile').toggle($("#profile-picture").val());
 	$('#upload-button').on('click', function(event) {
 		event.preventDefault();
 		if(mediaUpLoader){
@@ -22,6 +22,18 @@ jQuery(document).ready(function($){
 				);
 		});
 		mediaUpLoader.open();
-		$('#dp_profile').toggle($("#profile-picture").val());
+		// $('#dp_profile').toggle($("#profile-picture").val());
 	});
+
+	$('#remove-profile-button').on('click',fucntion(e){
+		e.preventDefault();
+		var response=confirm("Are u sure you want to delete your profile pciture?");
+		if(answer == true){
+			console.log('yes please deltete!');
+		}
+		else{
+			console.log('thank god u didn\'t delete');
+		}
+		return;
+	})
 });

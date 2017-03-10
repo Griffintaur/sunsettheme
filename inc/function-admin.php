@@ -65,7 +65,13 @@ register_setting( 'sunset-settings-group','profile_pic' );
 }
 function sidebar_profile_pic(){
 	$Picture=esc_attr( get_option( 'profile_pic' ) );
-	echo '<input type="button" class="button button-secondary" value="Upload Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_pic" value="'.$Picture.'"/>';
+	if(empty($Picture)){
+		echo '<input type="button" class="button button-secondary" value="Upload Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_pic" value=""/>';
+	}
+	else{
+		echo '<input type="button" class="button button-secondary" value="Replace Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_pic" value="'.$Picture.'"/><input type="button" class="button button-secondary" value="Remove" id="remove-profile-button">';
+	}
+	
 }
 
 function sunset_sidebar_options(){
