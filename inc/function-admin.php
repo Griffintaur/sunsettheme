@@ -17,8 +17,8 @@ function sunset_add_admin_page(){
 add_submenu_page('ankit_sunsettheme','Sunset Theme Options','Sidebar','manage_options','ankit_sunsettheme','sunset_theme_create_page');
 add_submenu_page('ankit_sunsettheme','Sunset CSS Options','Custom CSS','manage_options','ankit_sunset_css','sunset_theme_settings_page');
 add_submenu_page( 'ankit_sunsettheme','Sunset Theme Options', 'Theme Options','manage_options' , 'ankit_sunset_theme', 'sunset_theme_support_page' );
-
-//Activate custom settings
+add_submenu_page( 'ankit_sunsettheme', 'Sunset Contact Form','Contact Form' , 'manage_options','ankit_sunset_contact_form_page','ankit_sunset_contact_form_page_callback' );
+//Activate_contact custom settings
 add_action('admin_init','sunset_custom_settings');
 }
 
@@ -59,12 +59,17 @@ register_setting( 'sunset-settings-group','profile_pic' );
 
 	//Theme Support Options
 	register_setting( 'sunset-theme-support','post_formats' );
-	register_setting( 'sunset-theme-support','Cutom_Header' );
+	register_setting( 'sunset-theme-support','Custom_Header' );
 	register_setting( 'sunset-theme-support','Custom_Background' );
 	add_settings_section( 'sunset-theme-options','Theme Options','sunset_theme_options','ankit_sunset_theme');
 	add_settings_field( 'post-formats','Post Formats' , 'sunset_post_formats_callback','ankit_sunset_theme', 'sunset-theme-options');
-	add_settings_field( 'custom-header-id','Custom Header', 'custom_header_field_callback', 'ankit_sunset_theme','sunset-theme-options' );
-	add_settings_field( 'custom-background-id', 'Custom Background', 'custom_background_field_callback', 'ankit_sunset_theme', 'sunset-theme-options');
+	add_settings_field( 'custom-header-idfield','Custom Header', 'custom_header_field_callback', 'ankit_sunset_theme','sunset-theme-options' );
+	add_settings_field( 'custom-background-idfield', 'Custom Background', 'custom_background_field_callback', 'ankit_sunset_theme', 'sunset-theme-options');
+
+	///Contact Form Options
+	register_setting('sunset_contact_options-group','activate_contact');
+	add_settings_section( 'sunset-contact-section', 'Contact Form','sunset_contact_callback', 'ankit_sunset_contact_form_page' );
+	add_settings_field( 'activate-form','activate_contact_form_field', 'activate_contact_form_callback', 'ankit_sunset_contact_form_page', 'sunset-contact-section' );
 
 }
 function sidebar_profile_pic(){
@@ -138,14 +143,33 @@ function sunset_post_formats_callback(){
 
 function custom_header_field_callback(){
 	$header=esc_attr( get_option('Custom_Header'));
-	$checked= @$background == 1? 'checked':'';
- 	echo '<label><input type="checkbox" id="custom_header_id" name="Custom_Header" value="1".'.$checked.'/>Activate the Custom Heder</label>';
+	$checked= @$header == 1? 'checked':'';
+ 	echo '<label><input type="checkbox" id="custom_header_id" name="Custom_Header" value="1"'.$checked.'/>Activate the Custom Header</label>';
 }
 function custom_background_field_callback(){
-	$background=esc_attr( get_option('Custom_Background'));
-	$checked= @$background == 1? 'checked':'';
- 	echo '<label><input type="checkbox" id="Custom_Background" value="!".'.$checked.'/>Activate the custom background</label>';
+	$background= get_option('Custom_Background');
+	$checked= (@$background == 1? 'checked':'');
+ 	echo '<label><input type="checkbox" id="Custom_Background_id" name="Custom_Background" value="1"'.$checked.'/>Activate the custom Background</label>';
 }
+//////////////////////////////////////
+function ankit_sunset_contact_form_page_callback(){
+	require_once(get_template_directory().'/inc/Templates/sunset-contact-form.php');
+}
+
+function sunset_contact_callback(){
+	echo'Activate and Deactivate the built in contact Page';
+}
+
+function activate_contact_form_callback(){
+	$activate=get_option( 'activate_contact');
+	$checked=@$activate==1?'checked': '';
+	echo '<label><input type="checkbox" name="activate_contact" id ="custom-contact-activation" value="1"'.$activate.'/>Activate the custom Contact form</label>' ;
+
+}
+
+
+
+
 
 ?>
 
