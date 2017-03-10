@@ -22,18 +22,19 @@ jQuery(document).ready(function($){
 				);
 		});
 		mediaUpLoader.open();
-		// $('#dp_profile').toggle($("#profile-picture").val());
 	});
-
-	$('#remove-profile-button').on('click',fucntion(e){
-		e.preventDefault();
-		var response=confirm("Are u sure you want to delete your profile pciture?");
-		if(answer == true){
-			console.log('yes please deltete!');
-		}
-		else{
-			console.log('thank god u didn\'t delete');
-		}
-		return;
-	})
+		// $('#dp_profile').toggle($("#profile-picture").val());
+		$('#remove-profile-button').on('click',function(e){
+			e.preventDefault();
+			var response=confirm("Are u sure you want to delete your profile pciture?");
+			if(answer == true){
+				$('#profile-picture').val('');
+				$('.sunset-general-form').submit();
+			}
+			else{
+				console.log('thank god u didn\'t delete');
+			}
+			return;
+		});
 });
+

@@ -58,9 +58,13 @@ register_setting( 'sunset-settings-group','profile_pic' );
 	//remeber here ankit_sunset is not binded to the name of the page but actually the group name which can be anything that is rendered using do settingin sunset-admin.php under the group name while the last input in the add_settings_filed bind it to the group
 
 	//Theme Support Options
-	register_setting( 'sunset-theme-support','post_formats', 'sunset_post_format_callback' );
+	register_setting( 'sunset-theme-support','post_formats' );
+	register_setting( 'sunset-theme-support','Cutom_Header' );
+	register_setting( 'sunset-theme-support','Custom_Background' );
 	add_settings_section( 'sunset-theme-options','Theme Options','sunset_theme_options','ankit_sunset_theme');
 	add_settings_field( 'post-formats','Post Formats' , 'sunset_post_formats_callback','ankit_sunset_theme', 'sunset-theme-options');
+	add_settings_field( 'custom-header-id','Custom Header', 'custom_header_field_callback', 'ankit_sunset_theme','sunset-theme-options' );
+	add_settings_field( 'custom-background-id', 'Custom Background', 'custom_background_field_callback', 'ankit_sunset_theme', 'sunset-theme-options');
 
 }
 function sidebar_profile_pic(){
@@ -116,10 +120,7 @@ function sunset_theme_support_page(){
 	require_once(get_template_directory().'/inc/Templates/sunset-theme-support.php');
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-function sunset_post_format_callback($input){
-	 return $input;
 
-}
 
 function sunset_theme_options(){
 echo 'Activate and deactivate specific theme Support Options hello';
@@ -135,6 +136,17 @@ function sunset_post_formats_callback(){
 	echo $output;
 }
 
- ?>
+function custom_header_field_callback(){
+	$header=esc_attr( get_option('Custom_Header'));
+	$checked= @$background == 1? 'checked':'';
+ 	echo '<label><input type="checkbox" id="custom_header_id" name="Custom_Header" value="1".'.$checked.'/>Activate the Custom Heder</label>';
+}
+function custom_background_field_callback(){
+	$background=esc_attr( get_option('Custom_Background'));
+	$checked= @$background == 1? 'checked':'';
+ 	echo '<label><input type="checkbox" id="Custom_Background" value="!".'.$checked.'/>Activate the custom background</label>';
+}
+
+?>
 
 

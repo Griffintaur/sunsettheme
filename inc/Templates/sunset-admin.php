@@ -22,5 +22,5 @@
 <form method="post" action="options.php" class="sunset-general-form">
 <?php settings_fields('sunset-settings-group'); ?>
 <?php do_settings_sections( 'ankit_sunset' ); ?>
-<?php submit_button(); ?>
+<?php submit_button('SaveChanges', 'primary', 'btnSubmit' ); ?>
 </form>

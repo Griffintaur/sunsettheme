@@ -14,9 +14,11 @@ $options=get_option( 'post_formats');
 	}
 if(!empty($options)){
 	add_theme_support( 'post-formats',$output );
-
-
 }
-
-
+$header=get_option( 'Custom_Header' );
+$background=get_option( 'Custom_Background' );
+if($header==1)
+	add_theme_support( 'Custom_Header' );
+if($background==1)
+	add_theme_support( 'Custom_Background' );
 ?>
