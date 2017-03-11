@@ -5,7 +5,6 @@
 
 <form method="post" action="options.php" class="sunset-general-form">
 <?php 
-
 	settings_fields( 'sunset-theme-support' );
 	do_settings_sections( 'ankit_sunset_theme');
 	submit_button();
