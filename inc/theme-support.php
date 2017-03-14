@@ -3,9 +3,11 @@
 @package sunset-theme
 ============================================
 		ADMIN ENQUEUE FUNCTION
+		Author :Ankit Singh
 ===============================================
 
 */
+
 $options=get_option( 'post_formats');
 	$formats = array('aside','gallery','image','status','quote','video','chat','audio' );
 	$output =array();

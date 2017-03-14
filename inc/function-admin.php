@@ -83,6 +83,7 @@ function sidebar_profile_pic(){
 	
 }
 
+
 function sunset_sidebar_options(){
 	echo 'Customized your sidebar Information';
 }
@@ -166,9 +167,6 @@ function activate_contact_form_callback(){
 	echo '<label><input type="checkbox" name="activate_contact" id ="custom-contact-activation" value="1"'.$activate.'/>Activate the custom Contact form</label>' ;
 
 }
-
-
-
 
 
 ?>
