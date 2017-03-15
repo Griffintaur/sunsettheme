@@ -9,7 +9,11 @@
 
 $contact=get_option( 'activate_contact' );
 if(@$contact ==1 ){
+
 	add_action('init','sunset_contact_custom_post_type');
+	add_filter( 'manage_sunset-contact_posts_column','sunset_set_contact_columns_callback' );
+	//manage_yourcustomposttype_posts_columns
+	add_action( 'manage_sunset-contact_custom_column','sunset_contact_custom_column' );
 }
 
 /*CONTACT CUSTOM POST TYPE*/
@@ -37,9 +41,22 @@ function sunset_contact_custom_post_type(){
 
 }
 
+//filter & change the name of the rows
+function sunset_set_contact_columns_callback($columns){
+	//unset($columns['author']);
+	$newcolumns=array();
+	$newcolumns['title']='Full Name';
+	$newcolumns['message']='Message';
+	$newcolumns['email']= 'Email';
+	$newcolumns['date']='Date';
+	return $newcolumns;
 
+}
 
-
+//goes through all the rows  one by one
+function sunset_contact_custom_column( $column, $post_id){
+	switch($column)
+}
 
 
 ?>
