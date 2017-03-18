@@ -2,8 +2,10 @@
 <?php settings_errors(); ?>
 <form method="post" actions="options.php">
 <?php  
-	do_settings_sections( 'ankit_sunset_contact_form_page' );
 	settings_fields( 'sunset_contact_options-group' );
+	do_settings_sections( 'ankit_sunset_contact_form_page' );
+
 	submit_button();
 ?>
+<label>dobe by ankuit singh</label>
 </form>

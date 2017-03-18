@@ -69,7 +69,7 @@ register_setting( 'sunset-settings-group','profile_pic' );
 	///Contact Form Options
 	register_setting('sunset_contact_options-group','activate_contact');
 	add_settings_section( 'sunset-contact-section', 'Contact Form','sunset_contact_callback', 'ankit_sunset_contact_form_page' );
-	add_settings_field( 'activate-form','activate_contact_form_field', 'activate_contact_form_callback', 'ankit_sunset_contact_form_page', 'sunset-contact-section' );
+	add_settings_field( 'activate-form','activate contact form', 'activate_contact_form_callback', 'ankit_sunset_contact_form_page', 'sunset-contact-section' );
 
 }
 function sidebar_profile_pic(){
@@ -163,8 +163,8 @@ function sunset_contact_callback(){
 
 function activate_contact_form_callback(){
 	$activate=get_option( 'activate_contact');
-	$checked=@$activate==1?'checked': '';
-	echo '<label><input type="checkbox" name="activate_contact" id ="custom-contact-activation" value="1"'.$activate.'/>Activate the custom Contact form</label>' ;
+	$checked=@$activate==1?'checked':'';
+	echo '<label><input type="checkbox" name="activate_contact" id ="custom-contact-activation" value="1"'.$activate.'/></label>' ;
 
 }
 
