@@ -21,4 +21,14 @@ function susnet_load_admin_scripts($hook){
 }
 
 add_action( 'admin_enqueue_scripts', 'susnet_load_admin_scripts' );
- ?>
+ 
+/*
+@package sunset-theme
+============================================
+		FRONT END ENQUEUE FUNCTION
+===============================================
+
+*/
+function sunset_load_scripts(){
+	
+}
